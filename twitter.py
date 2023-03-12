@@ -1,13 +1,23 @@
 import requests
 import json
+import os
+from db_mod import Mysqlconn
+
+tweet_compare_db = Mysqlconn("")
+
+account = tweet_compare_db.check_account()
+print(account)
+
+from dotenv import load_dotenv
+load_dotenv()
 
 url = "https://twitter154.p.rapidapi.com/user/tweets"
 
 querystring = {"username":"joebiden","limit":"2","user_id":"939091","include_replies":"false"}
 
 headers = {
-	"X-RapidAPI-Key": "8cd4e9e876msh94390cd459bab51p19ccc9jsn5c5983825c97",
-	"X-RapidAPI-Host": "twitter154.p.rapidapi.com"
+	"X-RapidAPI-Key": os.getenv('X-RapidAPI-Key'),
+	"X-RapidAPI-Host": os.getenv('X-RapidAPI-Host')
 }
 
 #get from api
